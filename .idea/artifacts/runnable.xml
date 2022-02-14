@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="runnable">
-    <output-path>$PROJECT_DIR$/out/artifacts/runnable</output-path>
-    <root id="archive" name="runnable.war" />
-  </artifact>
-</component>
