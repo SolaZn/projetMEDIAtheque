@@ -12,6 +12,25 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>mediatek</groupId>
+            <artifactId>mediatek2022</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/mediatek2022.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>persistance</groupId>
+            <artifactId>persistance</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/persistance.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>projetMediatheque</finalName>

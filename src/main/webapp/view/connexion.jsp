@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: pierr
   Date: 21/02/2022
@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String login = "";
+    String mdp = "";
+%>
 <html>
   <section class="section login">
     <!-- TITLE -->
@@ -30,10 +34,13 @@
                     </div>
                 
                     <!-- SIGN IN -->
-                    <input type="submit" value="Se connecter" class="button login__button"></input>
-                 
-                </form>
+                    <input type="submit" value="Se connecter" class="button login__button"/>
+                <!--</form>-->
             </div>
+            <% List<String> utilisateurs = (List<String>) request.getAttribute("users");
+                for(String user : utilisateurs){%>
+            <%=user%>
+            <%}%>
         </div>
     </div>
 </section>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="mediatek2022 (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/mediatek2022.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/src/mediatek2022.jar!/" />
+    </SOURCES>
+  </library>
+</component>

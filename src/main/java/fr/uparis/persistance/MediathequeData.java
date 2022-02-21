@@ -1,4 +1,4 @@
-package persistance;
+package fr.uparis.persistance;
 
 import java.util.List;
 import mediatek2022.*;
@@ -17,7 +17,7 @@ public class MediathequeData implements PersistentMediatheque {
 
 	// renvoie la liste de tous les documents disponibles de la médiathèque
 	@Override
-	public List<Document> tousLesDocumentsDisponibles() {
+	public List<mediatek2022.Document> tousLesDocumentsDisponibles() {
 		return null;
 	}
 

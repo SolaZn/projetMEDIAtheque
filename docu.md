@@ -1,7 +1,7 @@
 Déploiement
 Quelle fonctionnalité pour le serveur ?
 -Le serveur doit être seulement accessible depuis une adresse locale (pas d'accès depuis l'extérieur)
--Une base de données commune doit être implémentée
+-Une base de données commune doit être implémentée et interrogée (à l'aide des drivers JDBC)
 
 Utilisateurs
 ->Utilisateur : id, nom, login, mot de passe
