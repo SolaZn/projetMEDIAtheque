@@ -21,7 +21,7 @@
             </div>
             <!-- FORM -->
             <div class="login__form">
-                <!--<form action="./index.php?controle=utilisateur&action=ident" method="post" class="login__register" id="login-in">-->
+                <form action="./index.jsp?controle=user&action=ident" method="post" class="login__register" id="login-in">
                     <h3 class="login__title">Authentification</h3>
                     <div class="login__box">
                         <i class="bx bxs-user login__icon"></i>
@@ -39,7 +39,7 @@
             </div>
             <% List<String> utilisateurs = (List<String>) request.getAttribute("users");
                 for(String user : utilisateurs){%>
-            <%=user%>
+                <%=user%>
             <%}%>
         </div>
     </div>
