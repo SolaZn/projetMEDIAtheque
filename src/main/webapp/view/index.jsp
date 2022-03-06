@@ -28,7 +28,7 @@
     <div class="hero-body">
         <div class="container has-text-centered">
             <p class="title">
-                Bonjour <%String[] user = (String[]) session.getAttribute("utilisateur");%> <%=user[0]%>
+                Bonjour <%=request.getAttribute("nom")%>
             </p>
             <p class="subtitle">
                 Bienvenue à la médiathèque de South Antonio St.

@@ -1,7 +1,5 @@
 package fr.uparis.persistance;
 
-import java.util.Locale;
-
 public class Utilisateur implements mediatek2022.Utilisateur{
     private final String name;
     private final boolean status;

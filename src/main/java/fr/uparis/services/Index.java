@@ -1,6 +1,6 @@
 package fr.uparis.services;
 
-import fr.uparis.persistance.Utilisateur;
+import mediatek2022.Utilisateur;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,10 +14,11 @@ public class Index extends HttpServlet {
         // toujours vérifier si l'utilisateur est loggé (si ce n'est pas le cas, retour immédiat à /Connexion)
         isUserLogged(request, response);
 
-        // afficher la liste des actions selon le profil
-        String[] donneesUtilisateur = (String[]) request.getSession().getAttribute("utilisateur");
-        Object[] array = {donneesUtilisateur[2]};
-        Utilisateur utilisateur = new Utilisateur(donneesUtilisateur[0], Boolean.parseBoolean(donneesUtilisateur[1]), array);
+        SerializableData user = (SerializableData) request.getSession().getAttribute("utilisateur");
+        Utilisateur utilisateur = (Utilisateur) user.getObjet();
+
+        //mise en place des attributs
+        request.setAttribute("nom", utilisateur.name());
 
         if(utilisateur.isBibliothecaire()){
             request.setAttribute("bibliothecaire", "true");

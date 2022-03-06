@@ -8,7 +8,7 @@ public class Document implements mediatek2022.Document{
     private String type;
     private boolean etatEmprunt;
     private String titre;
-    private String auteur;  
+    private String auteur;
 
     @Override
     public boolean disponible() {
