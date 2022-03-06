@@ -10,16 +10,19 @@
 <html lang="fr">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/connexion.css">
     <title>Connexion - Médiathèques de la vallée de San Diego</title>
-    <link rel="icon" href="./view/content/logo_small.png">
+    <link rel="icon" href="${pageContext.request.contextPath}/view/content/logo.png">
 </head>
-<body>
-<div class="hero is-fullheight columns is-flex is-centered is-vcentered" style="background-color: #E8E1E1;">
+<body style="background-color: #E8E1E1; ">
+<div class="hero is-fullheight columns is-flex is-centered is-vcentered">
+    <div class="hero-head"></div>
     <div class="hero-body has-text-centered column">
         <!-- FORM -->
-        <form class="container section has-background-white-ter" action="${pageContext.request.contextPath}/Connexion" method="post"
+        <form class="box container section has-background-white-ter" action="${pageContext.request.contextPath}/Connexion"
+              method="post"
               style="border-radius: 5px;">
-            <img alt="Logo" src="./view/content/logo_small.png">
+            <img alt="Logo" src="${pageContext.request.contextPath}/view/content/logo_small.png">
             <h3 class="subtitle">Authentification</h3>
             <div class="field">
                 <label class="label">Identifiant</label>
@@ -41,28 +44,34 @@
                     <button class="button is-success" type="submit">
                         Connexion
                     </button>
-                    <button class="js-modal-trigger" data-target="modal-js-example">
-                        Open JS example modal
-                    </button>
                 </p>
             </div>
         </form>
     </div>
+    <div class="hero-foot"></div>
 </div>
 <%
-    if(!(request.getAttribute("loginfailed") == null))
-            if(request.getAttribute("loginfailed").equals("failed")){
-        %>
+    if (!(request.getAttribute("loginfailed") == null))
+        if (request.getAttribute("loginfailed").equals("failed")) {
+%>
 <div id="modal-js-example" class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-content">
         <div class="box">
-            <p class="has-text-danger-dark">Le nom d'utilisateur ou le mot de passe est incorrect</p>
+            <%
+                if (!(request.getAttribute("notConnected") == null)) {
+                    if(request.getAttribute("notConnected").equals("true")){
+            %>
+            <p class="has-text-info-dark has-text-centered">Veuillez vous connecter pour accéder à la médiathèque</p>
+            <% }}else{%>
+            <p class="has-text-danger-dark has-text-centered">Le nom d'utilisateur ou le mot de passe est incorrect</p>
+            <%}%>
         </div>
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
 </div>
 <%}%>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Functions to open and close a modal
@@ -95,5 +104,6 @@
         });
     });
 </script>
+
 </body>
 </html>

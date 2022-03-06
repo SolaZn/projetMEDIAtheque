@@ -38,11 +38,11 @@ public class Connexion extends HttpServlet {
         if(utilisateur != null) {
             String[] utilisateurData = {utilisateur.name(), String.valueOf(utilisateur.isBibliothecaire()), Arrays.toString(utilisateur.data())};
             session.setAttribute("utilisateur", utilisateurData);
-            rd = request.getRequestDispatcher("view/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/Index");
         }else{
             request.setAttribute("loginfailed", "failed");
             rd = request.getRequestDispatcher("view/connexion.jsp");
+            rd.forward(request,response);
         }
-        rd.forward(request,response);
-    }
+     }
 }

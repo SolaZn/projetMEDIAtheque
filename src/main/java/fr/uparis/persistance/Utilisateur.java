@@ -1,12 +1,17 @@
 package fr.uparis.persistance;
 
+import java.util.Locale;
+
 public class Utilisateur implements mediatek2022.Utilisateur{
     private final String name;
-    private final String status;
-    protected Utilisateur(String username, String userstatus){
+    private final boolean status;
+    private final Object[] data;
+    public Utilisateur(String username, boolean userstatus, Object[] userdata){
         name = username;
+        data = userdata;
         status = userstatus;
     }
+
     @Override
     public String name() {
         return name;
@@ -14,11 +19,11 @@ public class Utilisateur implements mediatek2022.Utilisateur{
 
     @Override
     public boolean isBibliothecaire() {
-        return status.equals("bibliothecaire");
+        return status;
     }
 
     @Override
     public Object[] data() {
-        return new Object[0];
+        return data;
     }
 }

@@ -4,10 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConnexionData {
+class ConnexionData {
     static Connection connection;
 
-    public static void initialize() throws ClassNotFoundException, SQLException {
+    protected static void initialize() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://tijger.o2switch.net:3306/vmvo1438_mediaweb";
         connection = DriverManager.getConnection(url, "vmvo1438_mediaweb", "mediaweb4568");
@@ -30,7 +30,7 @@ public class ConnexionData {
         return utilisateurs;
     }
 
-    public static Utilisateur connectUsingLogin(String username, String password) throws SQLException {
+    protected static Utilisateur connectUsingLogin(String username, String password) throws SQLException {
         String req = "SELECT * FROM utilisateur WHERE login = ? AND mdp = ?";
         PreparedStatement st = connection.prepareStatement(req);
         st.setString(1, username);
@@ -43,9 +43,16 @@ public class ConnexionData {
         }
         else {
             String foundName = rs.getString("nom_u");
-            String foundStatus = rs.getString("type_u");
+            String foundStrStatus = rs.getString("type_u");
+            Object[] foundData = {}; //TODO: mettre les données complémentaires ici
 
-            return new Utilisateur(foundName, foundStatus);
+            boolean foundStatus = false;
+
+            if(foundStrStatus.equals("bibliothecaire")){
+                foundStatus = true;
+            }
+
+            return new Utilisateur(foundName, foundStatus, foundData);
         }
 
     }

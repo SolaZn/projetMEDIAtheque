@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="fr">
 <head>
     <title>Emprunt</title>
 </head>
@@ -17,7 +17,7 @@
     <div class="login__container container">
         <div class="login__content">
             <div class="login__img">
-                <img src="./vue/img/login-img.svg" alt="login">
+                <img src="/content/" alt="login">
             </div>
             <!-- FORM -->
             <div class="login__form">
@@ -27,7 +27,6 @@
                       <a href="" onClick="emprunter(d)"><%=d.toString() %></a><br>
                     <%}%>            
           
-                <!--</form>-->
             </div>
         </div>
     </div>
