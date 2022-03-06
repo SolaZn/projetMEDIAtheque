@@ -1,4 +1,4 @@
-<%--
+<%@ page import="fr.uparis.persistance.Utilisateur" %><%--
   Created by IntelliJ IDEA.
   User: pierr
   Date: 21/02/2022
@@ -10,12 +10,9 @@
 <html>
 
 <body>
-
-  <form action="ControllerServlet" method="post">  
-    Name:<input type="text" name="name"><br>  
-    Password:<input type="password" name="password"><br>  
-    <input type="submit" value="login">  
-  </form>
-
+<%
+    String[] utilisateur = (String[]) session.getAttribute("utilisateur");
+%>
+<%=utilisateur[2]%>
 </body>
 </html>

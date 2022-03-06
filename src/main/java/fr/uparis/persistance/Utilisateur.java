@@ -1,14 +1,20 @@
 package fr.uparis.persistance;
 
 public class Utilisateur implements mediatek2022.Utilisateur{
+    private final String name;
+    private final String status;
+    protected Utilisateur(String username, String userstatus){
+        name = username;
+        status = userstatus;
+    }
     @Override
     public String name() {
-        return null;
+        return name;
     }
 
     @Override
     public boolean isBibliothecaire() {
-        return false;
+        return status.equals("bibliothecaire");
     }
 
     @Override

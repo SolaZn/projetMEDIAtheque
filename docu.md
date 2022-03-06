@@ -24,5 +24,4 @@ soit de les stocker en variables de session
 Model géré par persistence et la base de données, sera appelée en début de session pour mettre à jour les données relatives aux objets 
 (utilisateurs, documents...)
 
-[image] https://www.oracle.com/a/tech/img/jsp-model2-architecture.gif
-
+![](https://www.oracle.com/a/tech/img/jsp-model2-architecture.gif)
