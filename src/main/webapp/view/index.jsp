@@ -10,8 +10,10 @@
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/connexion.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Index - Médiathèques de la vallée de San Diego</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/view/content/logo.png">
+    <link rel="icon" href="${pageContext.request.contextPath}/view/content/logo_favi.png">
 </head>
 <body style="background-color: hsl(204, 86%, 53%);">
 <div class="hero is-info is-large is-fullheight-with-navbar">
@@ -20,6 +22,8 @@
             <div class="container">
                 <div class="navbar-brand">
                     <img src="${pageContext.request.contextPath}/view/content/logo_small.png" alt="Logo">
+                </div>
+                <div class="has-text-grey-dark navbar-item" id="clock">
                 </div>
             </div>
         </nav>
@@ -83,4 +87,35 @@
     </div>
 </div>
 </body>
+<script>
+    $(document).ready(function() {
+
+        function displayTime() {
+            var currentTime = new Date();
+
+            var hours = currentTime.getHours();
+            var meridiem = "AM";
+            if (hours > 12) {
+                hours = hours - 12;
+                meridiem = "PM"
+            }
+            var minutes = currentTime.getMinutes();
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            var seconds = currentTime.getSeconds();
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+
+            }
+
+            var clockDiv = document.getElementById('clock');
+            clockDiv.innerText = hours + ":" + minutes + ":" + seconds + " " + meridiem;
+
+        }
+
+        displayTime();
+        setInterval(displayTime, 1000);
+    });
+</script>
 </html>

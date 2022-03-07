@@ -1,6 +1,7 @@
 package fr.uparis.persistance;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import fr.uparis.persistance.exceptions.ConnectionException;
@@ -28,7 +29,12 @@ public class MediathequeData implements PersistentMediatheque {
     // renvoie la liste de tous les documents disponibles de la médiathèque
     @Override
     public List<mediatek2022.Document> tousLesDocumentsDisponibles() {
-        return null;
+        try{
+            return ConnexionData.queryEveryDocument();
+        }catch(SQLException e){
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 
     // va récupérer le User dans la BD et le renvoie
@@ -38,6 +44,7 @@ public class MediathequeData implements PersistentMediatheque {
         try {
             return ConnexionData.connectUsingLogin(login, password);
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }

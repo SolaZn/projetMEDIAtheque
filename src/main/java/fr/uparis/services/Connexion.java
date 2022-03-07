@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet(name = "Connexion", value = "/Connexion")
 public class Connexion extends HttpServlet {
@@ -33,10 +34,11 @@ public class Connexion extends HttpServlet {
         String password = request.getParameter("password");
 
         Utilisateur utilisateur = Mediatheque.getInstance().getUser(login, password);
-        SerializableData user =  new SerializableData(utilisateur);
+        //SerializableData user =  new SerializableData(utilisateur);
 
         if(utilisateur != null) {
-            session.setAttribute("utilisateur", user);
+            String[] utilisateurData = {utilisateur.name(), String.valueOf(utilisateur.isBibliothecaire()), Arrays.toString(utilisateur.data())};
+            session.setAttribute("utilisateur", utilisateurData);
             response.sendRedirect(request.getContextPath() + "/Index");
         }else{
             request.setAttribute("loginfailed", "failed");

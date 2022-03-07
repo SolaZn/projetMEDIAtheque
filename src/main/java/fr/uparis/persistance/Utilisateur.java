@@ -4,6 +4,7 @@ public class Utilisateur implements mediatek2022.Utilisateur{
     private final String name;
     private final boolean status;
     private final Object[] data;
+
     public Utilisateur(String username, boolean userstatus, Object[] userdata){
         name = username;
         data = userdata;
