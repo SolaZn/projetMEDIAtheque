@@ -1,0 +1,22 @@
+
+
+java:S1989"fHandle the following exceptions that could be thrown by "isUserLogged": IOException, ServletException.(œ³¨¿ÿÿÿÿÿ
+]	java:S125"<This block of commented-out lines of code should be removed.(€­Ïáşÿÿÿÿ8‰ûúö/
+~
+java:S1989""aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ãìÄ8àÑØŠö/
+ˆ
+java:S19892"fHandle the following exceptions that could be thrown by "isUserLogged": IOException, ServletException.(œ³¨¿ÿÿÿÿÿ8âÑØŠö/
+p
+java:S19898"SHandle the following exception that could be thrown by "sendRedirect": IOException.(Ûº¡¤8âÑØŠö/
+o
+java:S1989;"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ë¾ªp8éÑØŠö/
+u
+java:S1989?"SHandle the following exception that could be thrown by "sendRedirect": IOException.(€÷üÛûÿÿÿÿ8éÑØŠö/
+p
+java:S1989B"SHandle the following exception that could be thrown by "sendRedirect": IOException.(˜„ô¶8éÑØŠö/
+u
+java:S1989E"SHandle the following exception that could be thrown by "sendRedirect": IOException.(¯Š¤¡üÿÿÿÿ8êÑØŠö/
+u
+java:S1989I"SHandle the following exception that could be thrown by "sendRedirect": IOException.(¯Š¤¡üÿÿÿÿ8ëÑØŠö/
+R
+java:S1128"5Remove this unused import 'mediatek2022.Utilisateur'.(ÙÔ»ß8ó‰ö/

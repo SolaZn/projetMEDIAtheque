@@ -74,7 +74,7 @@ public class Emprunt extends HttpServlet {
                 String numero = request.getParameter("numero");
                 List<Document> listeDocumentsDisp = Mediatheque.getInstance().tousLesDocumentsDisponibles();
                 try {
-                    Mediatheque.getInstance().emprunt(listeDocumentsDisp.get(Integer.parseInt(numero)), utilisateur);
+                    Mediatheque.getInstance().emprunt(listeDocumentsDisp.get(Integer.parseInt(numero) - 1), utilisateur);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -82,6 +82,7 @@ public class Emprunt extends HttpServlet {
         }else{
             response.sendRedirect(request.getContextPath() + "/Index");
         }
+
         RequestDispatcher rd = request.getRequestDispatcher("/Index");
         request.setAttribute("done", "true");
         rd.forward(request,response);

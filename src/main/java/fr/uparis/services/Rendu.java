@@ -79,7 +79,7 @@ public class Rendu extends HttpServlet {
                 // synchronized ?
                 List<Document> listeDocumentsDisp = Mediatheque.getInstance().tousLesDocumentsDisponibles();
                 try {
-                    Mediatheque.getInstance().retour(listeDocumentsDisp.get(Integer.parseInt(numero)), utilisateur);
+                    Mediatheque.getInstance().retour(listeDocumentsDisp.get(Integer.parseInt(numero) - 1), utilisateur);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

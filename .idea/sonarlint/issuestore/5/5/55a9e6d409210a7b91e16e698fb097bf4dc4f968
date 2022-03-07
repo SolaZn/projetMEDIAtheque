@@ -1,0 +1,21 @@
+
+
+java:S1989"fHandle the following exceptions that could be thrown by "isUserLogged": IOException, ServletException.(œ³¨¿ÿÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(€­Ïáşÿÿÿÿ
+w
+java:S1989"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ãìÄ
+w
+java:S1989."aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ãìÄ
+
+java:S1989>"fHandle the following exceptions that could be thrown by "isUserLogged": IOException, ServletException.(œ³¨¿ÿÿÿÿÿ
+V	java:S125@"<This block of commented-out lines of code should be removed.(€­Ïáşÿÿÿÿ
+n
+java:S1989S"SHandle the following exception that could be thrown by "sendRedirect": IOException.(¯Š¤¡üÿÿÿÿ
+w
+java:S1989X"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ãìÄ
+K
+java:S1128"5Remove this unused import 'mediatek2022.Utilisateur'.(ÙÔ»ß
+]
+java:S1192"GDefine a constant instead of duplicating this literal "/Index" 3 times.(Éøä
+b
+java:S1192"LDefine a constant instead of duplicating this literal "utilisateur" 3 times.(©„Í­

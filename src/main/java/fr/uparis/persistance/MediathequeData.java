@@ -12,10 +12,15 @@ import mediatek2022.*;
 
 public class MediathequeData implements PersistentMediatheque {
     // Jean-François Brette 01/01/2018
+    static boolean connectionDone = false;
+
     static {
         Mediatheque.getInstance().setData(new MediathequeData());
         try {
-            ConnexionData.initialize();
+            if(!connectionDone) {
+                ConnexionData.initialize();
+                connectionDone = true;
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

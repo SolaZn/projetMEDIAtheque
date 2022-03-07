@@ -63,7 +63,7 @@
                         if (noDocument.equals("false")) {
                             List<Document> documentList = (List<Document>) request.getAttribute("documents");
                             if(documentList != null){
-                                int count = 0;
+                                int count = 1;
                                 for(Document doc : documentList){
                 %>
             <tr>
