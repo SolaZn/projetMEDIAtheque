@@ -64,9 +64,14 @@ public class MediathequeData implements PersistentMediatheque {
 
     @Override
     public void ajoutDocument(int type, Object... args) {
-        // args[0] -> le titre
-        // args [1] --> l'auteur
+        String titre = (String) args[0];
+        String auteur = (String) args [1];
         // etc... variable suivant le type de document
+        try {
+            ConnexionData.ajoutDocumentData(type, titre, auteur);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

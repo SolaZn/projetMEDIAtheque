@@ -7,14 +7,15 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.Arrays;
 
 @WebServlet(name = "Connexion", value = "/Connexion")
 public class Connexion extends HttpServlet {
+
     public Connexion(){
         try {
-            Class.forName(fr.uparis.persistance.MediathequeData.class.getName());
-        } catch (ClassNotFoundException e) {
+            String mediathequePackage = DataConfiguration.getConfigPackage() + ".class.getName()";
+            Class.forName(mediathequePackage);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -34,11 +35,9 @@ public class Connexion extends HttpServlet {
         String password = request.getParameter("password");
 
         Utilisateur utilisateur = Mediatheque.getInstance().getUser(login, password);
-        //SerializableData user =  new SerializableData(utilisateur);
 
         if(utilisateur != null) {
-            String[] utilisateurData = {utilisateur.name(), String.valueOf(utilisateur.isBibliothecaire()), Arrays.toString(utilisateur.data())};
-            session.setAttribute("utilisateur", utilisateurData);
+            session.setAttribute("utilisateur", utilisateur);
             response.sendRedirect(request.getContextPath() + "/Index");
         }else{
             request.setAttribute("loginfailed", "failed");

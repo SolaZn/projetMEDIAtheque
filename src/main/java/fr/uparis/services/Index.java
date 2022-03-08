@@ -14,12 +14,7 @@ public class Index extends HttpServlet {
         // toujours vérifier si l'utilisateur est loggé (si ce n'est pas le cas, retour immédiat à /Connexion)
         isUserLogged(request, response);
 
-        //SerializableData user = (SerializableData) request.getSession().getAttribute("utilisateur");
-        //Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-
-        String[] donneesUtilisateur = (String[]) request.getSession().getAttribute("utilisateur");
-        Object[] array = {donneesUtilisateur[2]};
-        fr.uparis.persistance.Utilisateur utilisateur = new fr.uparis.persistance.Utilisateur(donneesUtilisateur[0], Boolean.parseBoolean(donneesUtilisateur[1]), array);
+        Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 
         //mise en place des attributs
         request.setAttribute("nom", utilisateur.name());

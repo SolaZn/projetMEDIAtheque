@@ -7,21 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ConnexionData {
-    static Connection connection;
+    static String url;
 
     private ConnexionData() {
     }
 
     protected static void initialize() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        String url = "jdbc:mysql://tijger.o2switch.net:3306/vmvo1438_mediaweb";
-        connection = DriverManager.getConnection(url, "vmvo1438_mediaweb", "mediaweb4568");
+        url = "jdbc:mysql://tijger.o2switch.net:3306/vmvo1438_mediaweb?autoReconnect=true";
+    }
+
+    protected static Connection connect() throws SQLException {
+        return DriverManager.getConnection(url, "vmvo1438_mediaweb", "mediaweb4568");
     }
 
     public static List<String> getUtilisateur() throws SQLException {
         ArrayList<String> utilisateurs = new ArrayList<>();
         String req1 = "SELECT `login` FROM utilisateur";
-        try(PreparedStatement st1 = connection.prepareStatement(req1)){
+        try(PreparedStatement st1 = connect().prepareStatement(req1)){
             ResultSet RS1 = st1.executeQuery(req1);
 
             while (RS1.next()) {
@@ -34,7 +37,7 @@ class ConnexionData {
 
     protected static Utilisateur connectUsingLogin(String username, String password) throws SQLException {
         String req = "SELECT * FROM utilisateur WHERE login = ? AND mdp = ?";
-        try(PreparedStatement st = connection.prepareStatement(req)){
+        try(PreparedStatement st = connect().prepareStatement(req)){
             st.setString(1, username);
             st.setString(2, password);
 
@@ -60,7 +63,7 @@ class ConnexionData {
 
     protected static List<Document> queryEveryDocument() throws SQLException {
         String req = "SELECT * FROM document";
-        try(PreparedStatement st = connection.prepareStatement(req)) {
+        try(PreparedStatement st = connect().prepareStatement(req)) {
             ResultSet rs = st.executeQuery();
 
             ArrayList<Document> documentList = new ArrayList<>();
@@ -86,7 +89,7 @@ class ConnexionData {
 
     protected static void updateDocumentStatus(int id, boolean status) {
         String req = "UPDATE document SET emprunt_d = ? WHERE id_d = ?";
-        try(PreparedStatement st = connection.prepareStatement(req)) {
+        try(PreparedStatement st = connect().prepareStatement(req)) {
             if(status) {
                 st.setInt(1, 1);
             }else{
@@ -99,4 +102,14 @@ class ConnexionData {
             e.printStackTrace();
         }
     }
+
+    public static void ajoutDocumentData(int type, String titre, String auteur) throws SQLException {
+        String req = "INSERT INTO document('type', 'titre', 'auteur') VALUES(type, titre, auteur)";
+        try(PreparedStatement st = connect().prepareStatement(req)) {
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
