@@ -10,11 +10,10 @@ import java.io.IOException;
 
 @WebServlet(name = "Connexion", value = "/Connexion")
 public class Connexion extends HttpServlet {
-
-    public Connexion(){
+    private boolean mediathequeInitialized = false;
+    private static void initialize(ServletContext context){
         try {
-            String mediathequePackage = DataConfiguration.getConfigPackage() + ".class.getName()";
-            Class.forName(mediathequePackage);
+            Class.forName(DataConfiguration.getConfigPackage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -22,6 +21,10 @@ public class Connexion extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(!mediathequeInitialized){
+            initialize(getServletContext());
+            mediathequeInitialized = true;
+        }
         RequestDispatcher rd = request.getRequestDispatcher("view/connexion.jsp");
         rd.forward(request,response);
     }

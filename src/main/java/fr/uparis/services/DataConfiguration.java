@@ -1,30 +1,24 @@
 package fr.uparis.services;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Root;
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import java.io.*;
 
-import java.util.List;
-
-@Root(name = "root")
 public class DataConfiguration {
-    @ElementList(name = "data")
-    private List<String> data;
+    private DataConfiguration(){}
 
-    @Element(name = "package")
-    private String packageName;
+    public static String getConfigPackage() {
+        try {
+            InputStream inputFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("config.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            dbFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
 
-    private String getPackageName() {
-        return packageName;
-    }
-
-    public static String getConfigPackage() throws Exception {
-        Serializer serializer = new Persister();
-
-        DataConfiguration config = serializer.read(DataConfiguration.class,
-                DataConfiguration.class.getClassLoader().getResourceAsStream("config.xml"));
-        return config.getPackageName();
+            return doc.getFirstChild().getTextContent();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

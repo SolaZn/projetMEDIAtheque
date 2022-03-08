@@ -66,19 +66,19 @@
                                 int count = 1;
                                 for(Document doc : documentList){
                 %>
-            <tr>
-                <th><%=doc.toString()%>
-                </th>
-                <td><%=doc.toString()%>
-                </td>
-                <td><%=doc.toString()%>
-                </td>
-                <td><%=doc.toString()%>
-                </td>
-                <td><%=doc.toString()%>
-                </td>
-                <td><%=doc.toString()%>
-                </td>
+                <tr>
+                    <th><%=doc.toString().split("\\|")[0]%>
+                    </th>
+                    <td><%=doc.toString().split("\\|")[1]%> <!-- mettre l'icon du type de doc (livre, DVD...) -->
+                    </td>
+                    <td><%=doc.toString().split("\\|")[2]%>
+                    </td>
+                    <td><%=doc.toString().split("\\|")[3]%>
+                    </td>
+                    <td><%=doc.toString().split("\\|")[4]%>
+                    </td>
+                    <td><%=doc.toString().split("\\|")[5]%>
+                    </td>
                 <%
                     if (doc.disponible()) {
                 %>

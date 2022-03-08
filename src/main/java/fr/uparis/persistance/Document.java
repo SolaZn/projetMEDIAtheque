@@ -42,17 +42,8 @@ public class Document implements mediatek2022.Document{
 
     @Override
     public String toString() {
-        return "Document{" +
-                "id='" + id + '\'' +
-                ", type='" + type + '\'' +
-                ", etatEmprunt=" + etatEmprunt +
-                ", titre='" + titre + '\'' +
-                ", auteur='" + auteur + '\'' +
-                ", options='" + options + '\'' +
-                '}';
-    }
-
-    protected int getId(){
-        return id;
+        return id + "|" + type + "|" +
+                etatEmprunt + "|" + titre + "|" +
+                auteur + "|" + options;
     }
 }

@@ -118,4 +118,5 @@
         setInterval(displayTime, 1000);
     });
 </script>
+<!-- TODO: ajouter les modals JS pour les erreurs -->
 </html>
