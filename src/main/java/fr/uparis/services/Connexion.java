@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet(name = "Connexion", value = "/Connexion")
 public class Connexion extends HttpServlet {
     private boolean mediathequeInitialized = false;
-    private static void initialize(ServletContext context){
+    private static void initialize(){
         try {
             Class.forName(DataConfiguration.getConfigPackage());
         } catch (Exception e) {
@@ -21,8 +21,9 @@ public class Connexion extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // si la médiathèque n'a pas déjà été chargée
         if(!mediathequeInitialized){
-            initialize(getServletContext());
+            initialize();
             mediathequeInitialized = true;
         }
         RequestDispatcher rd = request.getRequestDispatcher("view/connexion.jsp");
@@ -37,9 +38,11 @@ public class Connexion extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
+        // récupération de l'utilisateur dans la Médiathèque
         Utilisateur utilisateur = Mediatheque.getInstance().getUser(login, password);
 
         if(utilisateur != null) {
+            // mise en place de la variable utilisateur
             session.setAttribute("utilisateur", utilisateur);
             response.sendRedirect(request.getContextPath() + "/Index");
         }else{

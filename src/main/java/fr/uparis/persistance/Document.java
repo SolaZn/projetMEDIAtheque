@@ -3,6 +3,8 @@ package fr.uparis.persistance;
 import fr.uparis.persistance.exceptions.DocumentDejaEmprunteException;
 import mediatek2022.Utilisateur;
 
+import java.sql.SQLException;
+
 public class Document implements mediatek2022.Document{
     private final int id;
     private final String type;
@@ -37,7 +39,11 @@ public class Document implements mediatek2022.Document{
     @Override
     public void retour() {
         etatEmprunt = false;
-        ConnexionData.updateDocumentStatus(this.id, false);
+        try {
+            ConnexionData.updateDocumentStatus(this.id, false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

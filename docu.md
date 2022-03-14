@@ -25,3 +25,8 @@ Model géré par persistence et la base de données, sera appelée en début de 
 (utilisateurs, documents...)
 
 ![](https://www.oracle.com/a/tech/img/jsp-model2-architecture.gif)
+
+Identifiants : 
+login: anthony mdp: 1234 -> abonné
+login: iranja mdp: 1234 -> bibliothecaire 
+

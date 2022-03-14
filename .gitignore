@@ -1,4 +1,4 @@
-
+.idea
 .idea/compiler.xml
 .idea/dataSources.xml
 .idea/jsLibraryMappings.xml
@@ -26,6 +26,8 @@ lib/javax.servlet.jar
 lib/javax.servlet.jsp.jar
 lib/javax.servlet.jsp.jstl.jar
 lib/javax.transaction.jar
+target
+projetMEDIAtheque
 target/classes/fr/uparis/persistance/ConnexionData.class
 target/classes/fr/uparis/persistance/Document.class
 target/classes/fr/uparis/persistance/exceptions/ConnectionException.class

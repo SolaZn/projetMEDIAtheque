@@ -9,9 +9,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script src="https://kit.fontawesome.com/d9b9925bfe.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/connexion.css">
-    <title>Rendre un document - Médiathèques de la vallée de San Diego</title>
+    <title>Ajout d'un document - Médiathèques de la vallée de San Diego</title>
     <link rel="icon" href="${pageContext.request.contextPath}/view/content/logo_no_transparency.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -40,25 +41,33 @@
             </p>
         </div>
     </div>
-    <form class="section is-success is-vcentered" action="${pageContext.request.contextPath}/Ajout"
+    <form class="form is-8 section is-success is-vcentered" action="${pageContext.request.contextPath}/Ajout"
           method="post">
 
         <div class="field">
-            <label class=""label>Type</label>
+            <label class="label">Type</label>
             <div class="control">
-                <imput class="imput" type="text" placeholder="Type de document" name="type">
+                <input type="radio" name="type" value="DVD" checked>
+                <i class="fa-solid fa-film"></i>
+
+                <input type="radio" name="type" value="CD">
+                <i class="icon fa-solid fa-compact-disc"></i>
+
+                <input type="radio" name="type" value="Livre">
+                <i class="icon fa-solid fa-book"></i>
+
             </div>
         </div>
         <div class="field">
-            <label class=""label>Titre</label>
+            <label class="label">Titre</label>
             <div class="control">
-                <imput class="imput" type="text" placeholder="Titre du document" name="titre">
+                <input class="input" type="text" placeholder="Titre du document" name="titre">
             </div>
         </div>
         <div class="field">
-            <label class=""label>Auteur</label>
+            <label class="label">Auteur</label>
             <div class="control">
-                <imput class="imput" type="text" placeholder="Auteur du document" name="auteur">
+                <input class="input" type="text" placeholder="Auteur du document" name="auteur">
             </div>
         </div>
         <div class="buttons are-medium is-grouped-centered">
@@ -78,7 +87,7 @@
 </div>
 </body>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         function displayTime() {
             var currentTime = new Date();

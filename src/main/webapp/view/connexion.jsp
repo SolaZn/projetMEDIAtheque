@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script src="https://kit.fontawesome.com/d9b9925bfe.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/connexion.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,18 +22,24 @@
     <div class="hero-head"></div>
     <div class="hero-body has-text-centered column">
         <!-- FORM -->
-        <form class="box container section has-background-white-ter" action="${pageContext.request.contextPath}/Connexion"
+        <form class="box container section has-background-white-ter"
+              action="${pageContext.request.contextPath}/Connexion"
               method="post"
               style="border-radius: 5px;">
             <img alt="Logo" src="${pageContext.request.contextPath}/view/content/logo_small.png">
             <h3 class="subtitle">Authentification</h3>
+            <span class="icon">
+                <i class="fa-solid fa-id-badge"></i>
+            </span>
             <div class="field">
                 <label class="label">Identifiant</label>
                 <div class="control">
                     <input class="input" type="text" placeholder="Tapez votre identifiant" name="login">
                 </div>
             </div>
-
+            <span class="icon">
+                <i class="fa-solid fa-key"></i>
+            </span>
             <div class="field">
                 <label class="label">Mot de passe</label>
                 <div class="control">
@@ -62,10 +69,11 @@
         <div class="box">
             <%
                 if (!(request.getAttribute("notConnected") == null)) {
-                    if(request.getAttribute("notConnected").equals("true")){
+                    if (request.getAttribute("notConnected").equals("true")) {
             %>
             <p class="has-text-info-dark has-text-centered">Veuillez vous connecter pour accéder à la médiathèque</p>
-            <% }}else{%>
+            <% }
+            } else {%>
             <p class="has-text-danger-dark has-text-centered">Le nom d'utilisateur ou le mot de passe est incorrect</p>
             <%}%>
         </div>

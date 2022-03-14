@@ -4,14 +4,13 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-import fr.uparis.persistance.exceptions.ConnectionException;
+import fr.uparis.persistance.exceptions.TypeNonSpecifieException;
 import mediatek2022.*;
 
-// classe mono-instance dont l'unique instance est connue de la médiatheque
-// via une auto-déclaration dans son bloc static
+// classe mono-instance dont l'unique instance est connue de la mï¿½diatheque
+// via une auto-dï¿½claration dans son bloc static
 
 public class MediathequeData implements PersistentMediatheque {
-    // Jean-François Brette 01/01/2018
     static boolean connectionDone = false;
 
     static {
@@ -21,9 +20,7 @@ public class MediathequeData implements PersistentMediatheque {
                 ConnexionData.initialize();
                 connectionDone = true;
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -31,7 +28,7 @@ public class MediathequeData implements PersistentMediatheque {
     private MediathequeData() {
     }
 
-    // renvoie la liste de tous les documents disponibles de la médiathèque
+    // renvoie la liste de tous les documents disponibles de la mï¿½diathï¿½que
     @Override
     public List<mediatek2022.Document> tousLesDocumentsDisponibles() {
         try{
@@ -42,8 +39,8 @@ public class MediathequeData implements PersistentMediatheque {
         }
     }
 
-    // va récupérer le User dans la BD et le renvoie
-    // si pas trouvé, renvoie null
+    // va rï¿½cupï¿½rer le User dans la BD et le renvoie
+    // si pas trouvï¿½, renvoie null
     @Override
     public Utilisateur getUser(String login, String password) {
         try {
@@ -54,23 +51,45 @@ public class MediathequeData implements PersistentMediatheque {
         }
     }
 
-    // va récupérer le document de numéro numDocument dans la BD
+    // va rï¿½cupï¿½rer le document de numï¿½ro numDocument dans la BD
     // et le renvoie
-    // si pas trouvé, renvoie null
+    // si pas trouvï¿½, renvoie null
     @Override
-    public Document getDocument(int numDocument) {
-        return null;
+    public mediatek2022.Document getDocument(int numDocument) {
+        try {
+            return ConnexionData.queryDocument(numDocument);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
-    public void ajoutDocument(int type, Object... args) {
+    public void ajoutDocument(int type, Object[] args) {
         String titre = (String) args[0];
         String auteur = (String) args [1];
-        // etc... variable suivant le type de document
+
         try {
-            ConnexionData.ajoutDocumentData(type, titre, auteur);
-        } catch (SQLException e) {
+            ConnexionData.addDocument(getType(type), titre, auteur);
+        } catch (SQLException | TypeNonSpecifieException e) {
             e.printStackTrace();
+        }
+    }
+
+    private String getType(int type) throws TypeNonSpecifieException {
+        switch (type){
+            case 1:{
+                return "Livre";
+            }
+            case 2:{
+                return "DVD";
+            }
+            case 3:{
+                return "CD";
+            }
+            default:{
+                throw new TypeNonSpecifieException("Le type n'a pas Ã©tÃ© spÃ©cifiÃ©");
+            }
         }
     }
 

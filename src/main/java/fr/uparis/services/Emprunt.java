@@ -18,7 +18,6 @@ public class Emprunt extends HttpServlet {
         isUserLogged(request, response);
 
         //vérifier le statut de l'utilisateur
-        //SerializableData user = (SerializableData) request.getSession().getAttribute("utilisateur");
         Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 
         if(utilisateur.isBibliothecaire()){
@@ -27,6 +26,7 @@ public class Emprunt extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/Index");
             rd.forward(request, response);
         }
+
         //mise en place des attributs
         request.setAttribute("nom", utilisateur.name());
 
@@ -59,7 +59,15 @@ public class Emprunt extends HttpServlet {
         // toujours vérifier si l'utilisateur est loggé (si ce n'est pas le cas, retour immédiat à /Connexion)
         isUserLogged(request, response);
 
+        //vérifier le statut de l'utilisateur
         Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+
+        if(utilisateur.isBibliothecaire()){
+            request.setAttribute("notAllowed", "true");
+
+            RequestDispatcher rd = request.getRequestDispatcher("/Index");
+            rd.forward(request, response);
+        }
 
         String choix = request.getParameter("choix");
         if(choix != null){

@@ -1,5 +1,6 @@
 <%@ page import="mediatek2022.Document" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Objects" %><%--
   Created by IntelliJ IDEA.
   User: Anthony
   To change this template use File | Settings | File Templates.
@@ -9,6 +10,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script src="https://kit.fontawesome.com/d9b9925bfe.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/connexion.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -51,7 +53,6 @@
                 <th><abbr title="État d'emprunt du document">État</abbr></th>
                 <th>Titre</th>
                 <th>Auteur</th>
-                <th>Options</th>
                 <th>Sélectionner</th>
             </tr>
             </thead>
@@ -69,15 +70,38 @@
                 <tr>
                     <th><%=doc.toString().split("\\|")[0]%>
                     </th>
-                    <td><%=doc.toString().split("\\|")[1]%> <!-- mettre l'icon du type de doc (livre, DVD...) -->
+                    <td>
+                        <%
+                            switch (doc.toString().split("\\|")[1]) {
+                                case "CD":
+                        %>
+                        <i class="icon fa-solid fa-compact-disc"></i>
+                        <% break;
+                            case "DVD":%>
+                        <i class="fa-solid fa-film"></i>
+                        <% break;
+                            case "Livre":%>
+                        <i class="icon fa-solid fa-book"></i>
+                        <% break;
+                            default:%>
+                        <%=doc.toString().split("\\|")[1]%>
+                        <% break;
+                        }%> <!-- TODO: mettre l'icon du type de doc (livre, DVD...) -->
                     </td>
-                    <td><%=doc.toString().split("\\|")[2]%>
+                    <td>
+                        <% if (Objects.equals(doc.toString().split("\\|")[2], "true")) {
+                        %>
+                        Emprunté
+                        <%
+                        } else {
+                        %>
+                        Disponible
+                        <%
+                            }%>
                     </td>
                     <td><%=doc.toString().split("\\|")[3]%>
                     </td>
                     <td><%=doc.toString().split("\\|")[4]%>
-                    </td>
-                    <td><%=doc.toString().split("\\|")[5]%>
                     </td>
                 <%
                     if (doc.disponible()) {
@@ -98,7 +122,6 @@
                 <th><abbr title="État d'emprunt du document">État</abbr></th>
                 <th>Titre</th>
                 <th>Auteur</th>
-                <th>Options</th>
                 <th>Sélectionner</th>
             </tr>
             </tfoot>
